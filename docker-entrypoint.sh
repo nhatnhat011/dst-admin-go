@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # 获取传入的参数
-steam_cmd_path='/app/steamcmd'
-steam_dst_server='/app/dst-dedicated-server'
+HOMEDIR="/home/${USER}"
+steam_cmd_path="${HOMEDIR}/steamcmd"
+steam_dst_server="${HOMEDIR}/dst"
 
 # 判断 steam_cmd_path 是否存在，不存在则创建
 if [ ! -d "$steam_cmd_path" ]; then
@@ -35,7 +36,7 @@ while [ ! -e "${steam_dst_server}/bin/dontstarve_dedicated_server_nullrenderer" 
   fi
   echo "Not found Dont Starve Together Sever, start to installing, try: ${retry}"
   bash $steam_cmd_path/steamcmd.sh +force_install_dir $steam_dst_server +login anonymous +app_update 343050 validate +quit
-  mkdir -p $USER_DIR/.klei/DoNotStarveTogether/MyDediServer
+  mkdir -p $HOMEDIR/.klei/DoNotStarveTogether/MyDediServer
   mkdir -p /app/backup
   mkdir -p /app/mod
   echo "steamcmd=$steam_cmd_path" >> /app/dst_config
